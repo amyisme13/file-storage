@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Rennokki\LaravelSnsEvents\Http\Controllers\SnsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::post('/sns-endpoint', [SnsController::class, 'handle']);
 
 Route::get('/', function () {
     return view('welcome');
