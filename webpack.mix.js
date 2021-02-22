@@ -1,4 +1,6 @@
+const ESLintPlugin = require('eslint-webpack-plugin');
 const mix = require('laravel-mix');
+const path = require('path');
 
 /*
  |--------------------------------------------------------------------------
@@ -6,12 +8,41 @@ const mix = require('laravel-mix');
  |--------------------------------------------------------------------------
  |
  | Mix provides a clean, fluent API for defining some Webpack build steps
- | for your Laravel applications. By default, we are compiling the CSS
+ | for your Laravel application. By default, we are compiling the Sass
  | file for the application as well as bundling up all the JS files.
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css', [
-        //
-    ]);
+const basePath = process.env.MIX_BASE_PATH;
+if (basePath) {
+  mix
+    .webpackConfig({ output: { publicPath: basePath + '/' } })
+    .setResourceRoot(basePath);
+}
+
+if (mix.inProduction()) {
+  mix.version();
+}
+
+mix.webpackConfig({
+  output: {
+    chunkFilename: '[name].[chunkhash:5].js',
+  },
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, 'resources/js/'),
+    },
+  },
+  plugins: [
+    new ESLintPlugin({
+      files: 'resources/js/**/*',
+      extensions: ['js', 'ts'],
+    }),
+  ],
+});
+
+mix
+  .ts('resources/js/app.ts', 'public/js')
+  .postCss('resources/css/app.css', 'public/css', [
+    //
+  ]);
