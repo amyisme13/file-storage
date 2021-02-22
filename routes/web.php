@@ -16,6 +16,6 @@ use Rennokki\LaravelSnsEvents\Http\Controllers\SnsController;
 
 Route::post('/sns-endpoint', [SnsController::class, 'handle']);
 
-Route::get('/', function () {
-    return view('welcome');
+Route::fallback(function () {
+    return view('app');
 });
