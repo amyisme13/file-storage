@@ -16,6 +16,8 @@ indent_size = 4
 
 [*.blade.php]
 indent_size = 2
+# i hate my blade formatter
+insert_final_newline = false
 
 # apparently, composer always update itself with 4 spaces
 [composer.json]
