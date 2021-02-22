@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use App\Enums\FileStatus;
+use App\Support\Aws\S3Client;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\File as FacadesFile;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
@@ -38,5 +39,40 @@ class File extends Model
             ->generateSlugsFrom('name')
             ->saveSlugsTo('slug')
             ->slugsShouldBeNoLongerThan(80);
+    }
+
+    /**
+     * Get the presigned PutObject url.
+     *
+     * @return string
+     */
+    public function getPutUrlAttribute()
+    {
+        return S3Client::create()->getPresignedUrl(
+            $this->path,
+            now()->addHours(2),
+            ['ContentType' => $this->type],
+            'PutObject'
+        );
+    }
+
+    /**
+     * Get the file extension from name.
+     *
+     * @return string
+     */
+    public function getExtensionAttribute()
+    {
+        return FacadesFile::extension($this->name);
+    }
+
+    /**
+     * Get whether file has been uploaded.
+     *
+     * @return string
+     */
+    public function getUploadedAttribute()
+    {
+        return !is_null($this->uploaded_at);
     }
 }

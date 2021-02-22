@@ -12,6 +12,16 @@ class S3Client
     private $disk = 's3';
 
     /**
+     * Create an instance of S3Client
+     *
+     * @return \App\Support\Aws\S3Client
+     */
+    public static function create()
+    {
+        return new S3Client();
+    }
+
+    /**
      * Set the disk used to get the adapter & client.
      *
      * @param string $disk
