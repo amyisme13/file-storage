@@ -1,12 +1,17 @@
 <template>
   <div id="app">
-    <h1>Hello World</h1>
+    <router-view></router-view>
   </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
 
-@Component
+@Component({
+  metaInfo: {
+    title: 'Default',
+    titleTemplate: '%s - File Storage',
+  },
+})
 export default class App extends Vue {}
 </script>
