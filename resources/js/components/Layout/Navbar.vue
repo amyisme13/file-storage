@@ -13,7 +13,8 @@
 
           <div class="hidden md:block">
             <div class="flex items-baseline ml-10 space-x-4">
-              <NavbarLink :to="{ name: 'Home' }">Home</NavbarLink>
+              <NavbarLink :to="{ name: 'Home' }" exact>Home</NavbarLink>
+              <NavbarLink :to="{ name: 'FileList' }">File List</NavbarLink>
             </div>
           </div>
         </div>
@@ -93,7 +94,8 @@
     <!-- Mobile menu, show/hide based on menu state. -->
     <div v-show="showMobileMenu" class="md:hidden" id="mobile-menu">
       <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-        <NavbarLink responsive :to="{ name: 'Home' }">Home</NavbarLink>
+        <NavbarLink responsive :to="{ name: 'Home' }" exact>Home</NavbarLink>
+        <NavbarLink responsive :to="{ name: 'FileList' }">File List</NavbarLink>
       </div>
 
       <div class="pt-4 pb-3 border-t border-gray-700">

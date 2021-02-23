@@ -8,9 +8,11 @@
 import { Vue, Component } from 'vue-property-decorator';
 
 @Component({
-  metaInfo: {
-    title: 'Default',
-    titleTemplate: '%s - File Storage',
+  metaInfo() {
+    return {
+      title: this.$route.meta.title,
+      titleTemplate: '%s - File Storage',
+    };
   },
 })
 export default class App extends Vue {}

@@ -19,7 +19,12 @@ class FileController extends Controller
      */
     public function index()
     {
-        $files = File::paginate();
+        $files = File::whereNotNull('uploaded_at')
+            ->when(request('search'), function ($query, $search) {
+                return $query->where('name', 'like', "%{$search}%");
+            })
+            ->paginate();
+
         return new FileCollection($files);
     }
 

@@ -16,6 +16,8 @@ export interface PaginationMeta {
   last_page: number;
   per_page: number;
   total: number;
+  to: number;
+  from: number;
 }
 
 export interface Paginated<T> {
@@ -40,4 +42,39 @@ export interface LoginDTO {
 export interface User {
   email: string;
   name: string;
+}
+
+/**
+ * Files
+ */
+
+export interface File {
+  user: User;
+
+  name: string;
+  type: string;
+  size: number;
+  slug: string;
+
+  url?: string;
+  thumbnail_url?: string;
+
+  created_at: string;
+  uploaded_at: string;
+  processed_at: string;
+}
+
+export interface CreatedFile extends File {
+  put_url: string;
+}
+
+export interface IndexFileDTO {
+  page?: number;
+  search?: string;
+}
+
+export interface StoreFileDTO {
+  name: string;
+  type: string;
+  size: number;
 }

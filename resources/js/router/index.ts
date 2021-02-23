@@ -9,6 +9,14 @@ Vue.use(VueRouter);
 
 const routes: RouteConfig[] = [
   {
+    path: '/login',
+    name: 'Login',
+    component: Login,
+    meta: {
+      title: 'Login',
+    },
+  },
+  {
     path: '/',
     name: 'Home',
     component: Home,
@@ -17,9 +25,13 @@ const routes: RouteConfig[] = [
     },
   },
   {
-    path: '/login',
-    name: 'Login',
-    component: Login,
+    path: '/files',
+    name: 'FileList',
+    component: () =>
+      import(/* webpackChunkName: "views/file-list" */ '@/views/FileList.vue'),
+    meta: {
+      title: 'File List',
+    },
   },
 ];
 

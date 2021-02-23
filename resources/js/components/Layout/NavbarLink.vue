@@ -6,6 +6,7 @@
 
   <router-link
     v-else
+    exact
     :to="to"
     active-class="text-white bg-gray-900"
     :class="classes"
@@ -31,6 +32,9 @@ export default class NavbarLink extends Vue {
 
   @Prop({ default: null })
   to!: Location | string | null;
+
+  @Prop({ default: false })
+  exact!: boolean;
 
   get classes(): string {
     let base = 'px-3 py-2 font-medium rounded-md';
