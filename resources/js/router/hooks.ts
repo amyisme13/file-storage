@@ -2,16 +2,16 @@ import Router, { Route } from 'vue-router';
 
 import { AuthModule } from '@/store/modules/auth';
 
+const loadUserWhenNull = () => !AuthModule.user && AuthModule.loadUser();
+
+const getLoginRoute = (to: Route) =>
+  to.name === 'Login' ? undefined : { name: 'Login' };
+
 export const configure = (router: Router) => {
   router.beforeEach(async (to: Route, _: Route, next: any) => {
-    console.log;
-    if (!AuthModule.authenticated && to.name === 'Login') {
-      next();
-      return;
-    }
-
     if (!AuthModule.authenticated) {
-      next({ name: 'Login' });
+      const loginRoute = getLoginRoute(to);
+      next(loginRoute);
       return;
     }
 
@@ -20,9 +20,7 @@ export const configure = (router: Router) => {
       return;
     }
 
-    if (!AuthModule.user) {
-      await AuthModule.loadUser();
-    }
+    await loadUserWhenNull();
 
     next();
   });
