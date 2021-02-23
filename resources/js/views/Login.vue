@@ -18,7 +18,7 @@
       <form @submit.prevent="login" class="mt-8 space-y-6">
         <div
           v-if="error && error.errors"
-          class="p-4 text-sm text-red-400 bg-red-200 rounded-md"
+          class="p-4 text-sm text-red-500 bg-red-200 rounded-md"
         >
           <ul class="mx-4 list-disc">
             <li v-for="(message, i) in error.errors" :key="i">

@@ -4,6 +4,7 @@ import { AuthModule } from '@/store/modules/auth';
 
 export const configure = (router: Router) => {
   router.beforeEach(async (to: Route, _: Route, next: any) => {
+    console.log;
     if (!AuthModule.authenticated && to.name === 'Login') {
       next();
       return;
@@ -21,9 +22,6 @@ export const configure = (router: Router) => {
 
     if (!AuthModule.user) {
       await AuthModule.loadUser();
-
-      next({ ...to, replace: true });
-      return;
     }
 
     next();

@@ -14,7 +14,15 @@ use Rennokki\LaravelSnsEvents\Http\Controllers\SnsController;
 |
 */
 
+Auth::routes([
+    'register' => false,
+    'reset' => false,
+    'confirm' => false,
+    'verify' => false,
+]);
+
 Route::post('/sns-endpoint', [SnsController::class, 'handle']);
+
 
 Route::fallback(function () {
     return view('app');
