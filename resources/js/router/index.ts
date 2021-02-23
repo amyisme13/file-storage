@@ -1,7 +1,9 @@
 import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
 
+import { configure } from './hooks';
 import Home from '@/views/Home.vue';
+import Login from '@/views/Login.vue';
 
 Vue.use(VueRouter);
 
@@ -14,6 +16,11 @@ const routes: RouteConfig[] = [
       title: 'Home',
     },
   },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login,
+  },
 ];
 
 const router = new VueRouter({
@@ -21,5 +28,7 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes: [...routes],
 });
+
+configure(router);
 
 export default router;

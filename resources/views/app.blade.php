@@ -14,6 +14,12 @@
 <body>
   <div id="app"></div>
 
+  @auth
+  <script>
+    localStorage.setItem('authenticated', '1')
+  </script>
+  @endauth
+
   <script src="{{ asset(mix('js/app.js')) }}"></script>
 </body>
 

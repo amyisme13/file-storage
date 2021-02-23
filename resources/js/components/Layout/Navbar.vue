@@ -21,7 +21,7 @@
         <div class="hidden md:block">
           <div class="flex items-center ml-4 md:ml-6">
             <!-- Profile dropdown -->
-            <div class="relative ml-3">
+            <div v-if="user" class="relative ml-3">
               <div>
                 <button
                   class="flex items-center max-w-xs text-sm bg-gray-800 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
@@ -53,13 +53,13 @@
                   aria-orientation="vertical"
                   aria-labelledby="user-menu"
                 >
-                  <a
-                    href="#"
-                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  <button
+                    @click="logout"
+                    class="block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-100"
                     role="menuitem"
                   >
                     Sign out
-                  </a>
+                  </button>
                 </div>
               </transition>
             </div>
@@ -88,7 +88,8 @@
       </div>
 
       <div class="pt-4 pb-3 border-t border-gray-700">
-        <div class="flex items-center px-5">
+        <!-- User Info -->
+        <div v-if="user" class="flex items-center px-5">
           <div class="flex-shrink-0">
             <img
               class="w-10 h-10 rounded-full"
@@ -97,20 +98,23 @@
             />
           </div>
           <div class="ml-3">
-            <div class="text-base font-medium leading-none text-white">Amy</div>
+            <div class="text-base font-medium leading-none text-white">
+              {{ user.name }}
+            </div>
 
             <div class="text-sm font-medium leading-none text-gray-400">
-              amy.azmim@gmail.com
+              {{ user.email }}
             </div>
           </div>
         </div>
+
         <div class="px-2 mt-3 space-y-1">
-          <a
-            href="#"
-            class="block px-3 py-2 text-base font-medium text-gray-400 rounded-md hover:text-white hover:bg-gray-700"
+          <button
+            @click="logout"
+            class="block w-full px-3 py-2 text-base font-medium text-left text-gray-400 rounded-md hover:text-white hover:bg-gray-700"
           >
             Sign out
-          </a>
+          </button>
         </div>
       </div>
     </div>
@@ -118,6 +122,7 @@
 </template>
 
 <script lang="ts">
+import { AuthModule } from '@/store/modules/auth';
 import { Component, Vue } from 'vue-property-decorator';
 
 import MenuIcon from './MenuIcon.vue';
@@ -129,5 +134,14 @@ import NavbarLink from './NavbarLink.vue';
 export default class Navbar extends Vue {
   showUserMenu = false;
   showMobileMenu = false;
+
+  get user() {
+    return AuthModule.user;
+  }
+
+  async logout() {
+    await AuthModule.logout();
+    this.$router.push({ name: 'Login' });
+  }
 }
 </script>
