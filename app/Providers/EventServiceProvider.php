@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Listeners\HandleMediaConvertNotification;
 use App\Listeners\HandleSnsNotification;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -17,7 +18,10 @@ class EventServiceProvider extends ServiceProvider
      */
     protected $listen = [
         Registered::class => [SendEmailVerificationNotification::class],
-        SnsNotification::class => [HandleSnsNotification::class],
+        SnsNotification::class => [
+            HandleSnsNotification::class,
+            HandleMediaConvertNotification::class,
+        ],
     ];
 
     /**

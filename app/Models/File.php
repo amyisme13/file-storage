@@ -41,7 +41,7 @@ class File extends Model
      *
      * @var array
      */
-    protected $appends = ['url', 'thumbnail_url'];
+    protected $appends = ['url', 'video_url', 'thumbnail_url'];
 
     /**
      * Get the route key for the model.
@@ -121,6 +121,23 @@ class File extends Model
         }
 
         return Storage::disk('s3')->temporaryUrl($this->path, now()->addHour());
+    }
+
+    /**
+     * Get the video url from video path
+     *
+     * @return string|null
+     */
+    public function getVideoUrlAttribute()
+    {
+        if (is_null($this->video_path)) {
+            return null;
+        }
+
+        return Storage::disk('s3')->temporaryUrl(
+            $this->video_path,
+            now()->addHour()
+        );
     }
 
     /**

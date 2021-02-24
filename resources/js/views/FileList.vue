@@ -68,7 +68,7 @@
                 <div class="flex-shrink-0 w-10 h-10">
                   <img
                     v-if="file.thumbnail_url"
-                    class="w-10 h-10 rounded-full"
+                    class="w-10 h-10 rounded-md"
                     :src="file.thumbnail_url"
                     alt=""
                   />

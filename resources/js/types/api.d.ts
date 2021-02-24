@@ -57,6 +57,7 @@ export interface File {
   slug: string;
 
   url?: string;
+  video_url?: string;
   thumbnail_url?: string;
 
   created_at: string;

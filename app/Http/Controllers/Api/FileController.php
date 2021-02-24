@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\File\StoreFile;
 use App\Http\Resources\File as FileResource;
 use App\Http\Resources\FileCollection;
+use App\Jobs\ProcessVideoFile;
 use App\Models\File;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -87,7 +88,7 @@ class FileController extends Controller
         if (Str::is('image/*', $file->type)) {
             // TODO: dispatch make thumbnail job
         } elseif (Str::is('video/*', $file->type)) {
-            // TODO: dispatch convert video job
+            ProcessVideoFile::dispatch($file);
         } else {
             $file->processed_at = now();
         }

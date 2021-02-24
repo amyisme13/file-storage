@@ -77,7 +77,12 @@
         </header>
 
         <FileItemList class="pt-8" label="To Upload" :isEmpty="filesIsEmpty">
-          <FileItem v-for="file in files" :key="file.id" :file="file" />
+          <FileItem
+            v-for="file in files"
+            :key="file.id"
+            :file="file"
+            @removeItem="removeFile"
+          />
         </FileItemList>
       </section>
 
