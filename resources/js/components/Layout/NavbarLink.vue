@@ -6,7 +6,7 @@
 
   <router-link
     v-else
-    exact
+    :exact="exact"
     :to="to"
     active-class="text-white bg-gray-900"
     :class="classes"

@@ -26,11 +26,12 @@
           </svg>
         </div>
 
-        <button
-          class="py-2 text-sm font-medium text-white bg-indigo-600 border-0 rounded-md sm:col-start-6"
+        <router-link
+          :to="{ name: 'FileUploader' }"
+          class="py-2 text-sm font-medium text-center text-white bg-indigo-600 border-0 rounded-md sm:col-start-6"
         >
           Upload Files
-        </button>
+        </router-link>
       </div>
 
       <table class="min-w-full divide-y divide-gray-200">
@@ -91,7 +92,7 @@
 
                 <div class="ml-4">
                   <div class="text-sm font-medium text-gray-900">
-                    {{ file.name }}
+                    <a :href="file.url" target="_blank">{{ file.name }}</a>
                   </div>
 
                   <div class="text-sm text-gray-500">

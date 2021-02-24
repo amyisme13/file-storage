@@ -20,7 +20,7 @@ class File extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'type', 'size'];
+    protected $fillable = ['name', 'type', 'size', 'user_id'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -59,7 +59,7 @@ class File extends Model
     public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
-            ->generateSlugsFrom('name')
+            ->generateSlugsFrom('without_extension')
             ->saveSlugsTo('slug')
             ->slugsShouldBeNoLongerThan(80);
     }
@@ -77,6 +77,16 @@ class File extends Model
             ['ContentType' => $this->type],
             'PutObject'
         );
+    }
+
+    /**
+     * Get the file name without extension from name.
+     *
+     * @return string
+     */
+    public function getWithoutExtensionAttribute()
+    {
+        return FacadesFile::name($this->name);
     }
 
     /**

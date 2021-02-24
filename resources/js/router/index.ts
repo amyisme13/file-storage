@@ -33,6 +33,17 @@ const routes: RouteConfig[] = [
       title: 'File List',
     },
   },
+  {
+    path: '/files/upload',
+    name: 'FileUploader',
+    component: () =>
+      import(
+        /* webpackChunkName: "views/file-uploader" */ '@/views/FileUploader.vue'
+      ),
+    meta: {
+      title: 'Upload',
+    },
+  },
 ];
 
 const router = new VueRouter({

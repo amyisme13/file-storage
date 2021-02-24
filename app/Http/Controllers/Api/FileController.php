@@ -7,6 +7,7 @@ use App\Http\Requests\File\StoreFile;
 use App\Http\Resources\File as FileResource;
 use App\Http\Resources\FileCollection;
 use App\Models\File;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -23,6 +24,7 @@ class FileController extends Controller
             ->when(request('search'), function ($query, $search) {
                 return $query->where('name', 'like', "%{$search}%");
             })
+            ->orderBy('id', 'desc')
             ->paginate();
 
         return new FileCollection($files);
@@ -36,11 +38,13 @@ class FileController extends Controller
      */
     public function store(StoreFile $request)
     {
-        $file = File::create($request->validated());
+        $file = Auth::user()
+            ->files()
+            ->create(
+                array_merge($request->validated(), ['user_id' => auth()->id()])
+            );
 
-        $path = "uploads/{$file->slug}.{$file->extension}";
-
-        $file->path = Storage::disk('s3')->path($path);
+        $file->path = "uploads/{$file->slug}.{$file->extension}";
         $file->save();
         $file->append('put_url');
 
