@@ -131,10 +131,18 @@
             <td
               class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap"
             >
+              <a
+                v-if="file.type.includes('video/')"
+                :href="`${playerUrl}/${file.slug}`"
+                target="_blank"
+                class="text-indigo-500 hover:text-indigo-700"
+              >
+                Play
+              </a>
+
               <button
-                @click="deleteFile(file.slug)"
-                href="#"
-                class="text-red-500 hover:text-red-700"
+                @click="deleteFile(file)"
+                class="ml-2 text-red-500 hover:text-red-700"
               >
                 Delete
               </button>
@@ -159,10 +167,11 @@
 import prettyBytes from 'pretty-bytes';
 import { Component, Vue, Watch } from 'vue-property-decorator';
 
-import { index } from '@/api/files';
+import { destroy, index } from '@/api/files';
 import AppLayout from '@/components/Layout/Layout.vue';
 import Pagination from '@/components/Pagination.vue';
 import { File, PaginationMeta } from '@/types/api';
+import config from '@/utils/config';
 
 @Component({
   components: { AppLayout, Pagination },
@@ -184,6 +193,10 @@ export default class FileList extends Vue {
   maxPage = 1;
   meta: PaginationMeta | null = null;
 
+  get playerUrl() {
+    return `${config.appUrl}/player`;
+  }
+
   async loadFiles() {
     const { data } = await index({ page: this.page, search: this.search });
 
@@ -192,8 +205,13 @@ export default class FileList extends Vue {
     this.meta = data.meta;
   }
 
-  deleteFile(slug: string) {
-    alert(`TODO: Delete ${slug}`);
+  async deleteFile(file: File) {
+    const confirmed = confirm(`Are you sure you want to delete ${file.name}?`);
+
+    if (confirmed) {
+      await destroy(file.slug);
+      this.loadFiles();
+    }
   }
 
   @Watch('page')
