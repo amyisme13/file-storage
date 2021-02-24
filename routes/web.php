@@ -23,7 +23,6 @@ Auth::routes([
 
 Route::post('/sns-endpoint', [SnsController::class, 'handle']);
 
-
 Route::fallback(function () {
     return view('app');
 });
