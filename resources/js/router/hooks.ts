@@ -16,7 +16,7 @@ export const configure = (router: Router) => {
     }
 
     if (to.name === 'Login') {
-      next({ name: 'Home' });
+      next({ name: 'FileList' });
       return;
     }
 

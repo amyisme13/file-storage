@@ -137,7 +137,7 @@ export default class Login extends Vue {
         remember: this.remember,
       });
 
-      this.$router.push({ name: 'Home' });
+      this.$router.push({ name: 'FileList' });
     } catch (err) {
       if (err && err.response) {
         this.error = err.response.data;

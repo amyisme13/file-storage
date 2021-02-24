@@ -2,7 +2,7 @@ import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
 
 import { configure } from './hooks';
-import Home from '@/views/Home.vue';
+import FileList from '@/views/FileList.vue';
 import Login from '@/views/Login.vue';
 
 Vue.use(VueRouter);
@@ -18,23 +18,14 @@ const routes: RouteConfig[] = [
   },
   {
     path: '/',
-    name: 'Home',
-    component: Home,
-    meta: {
-      title: 'Home',
-    },
-  },
-  {
-    path: '/files',
     name: 'FileList',
-    component: () =>
-      import(/* webpackChunkName: "views/file-list" */ '@/views/FileList.vue'),
+    component: FileList,
     meta: {
       title: 'File List',
     },
   },
   {
-    path: '/files/upload',
+    path: '/upload',
     name: 'FileUploader',
     component: () =>
       import(
