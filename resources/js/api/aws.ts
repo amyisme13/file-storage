@@ -7,4 +7,7 @@ export const putObject = (
 ) =>
   request.put(url, file, {
     onUploadProgress,
+    headers: {
+      'Content-Type': file.type,
+    },
   });
