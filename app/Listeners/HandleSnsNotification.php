@@ -14,12 +14,14 @@ class HandleSnsNotification
      */
     public function handle($event)
     {
+        $message = $event->payload['message'];
+
         $notification = new SnsNotification();
-        $notification->message_id = $event->payload['MessageId'];
-        $notification->message = $event->payload['Message'];
-        $notification->topic_arn = $event->payload['TopicArn'];
-        $notification->message_timestamp = $event->payload['Timestamp'];
-        $notification->raw = json_encode($event->payload);
+        $notification->message_id = $message['MessageId'];
+        $notification->message = $message['Message'];
+        $notification->topic_arn = $message['TopicArn'];
+        $notification->message_timestamp = $message['Timestamp'];
+        $notification->raw = json_encode($message);
         $notification->save();
     }
 }
