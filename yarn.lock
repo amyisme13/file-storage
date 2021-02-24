@@ -999,6 +999,11 @@
     "@types/minimatch" "*"
     "@types/node" "*"
 
+"@types/hls.js@^0.13.3":
+  version "0.13.3"
+  resolved "https://registry.yarnpkg.com/@types/hls.js/-/hls.js-0.13.3.tgz#eb982a866125745eadee468c989fc9e189f24019"
+  integrity sha512-Po8ZPCsAcPPuf5OODPEkb6cdWJ/w4BdX1veP7IIOc2WG0x1SW4GEQ1+FHKN1AMG2AePJfNUceJbh5PKtP92yRQ==
+
 "@types/http-proxy@^1.17.4":
   version "1.17.5"
   resolved "https://registry.yarnpkg.com/@types/http-proxy/-/http-proxy-1.17.5.tgz#c203c5e6e9dc6820d27a40eb1e511c70a220423d"
@@ -2274,6 +2279,11 @@ core-js-compat@^3.8.0:
     browserslist "^4.16.3"
     semver "7.0.0"
 
+core-js@^3.8.1:
+  version "3.9.0"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.9.0.tgz#790b1bb11553a2272b36e2625c7179db345492f8"
+  integrity sha512-PyFBJaLq93FlyYdsndE5VaueA9K5cNB7CGzeCj191YYLhkQM0gdZR2SKihM70oF0wdqKSKClv/tEBOpoRmdOVQ==
+
 core-util-is@~1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/core-util-is/-/core-util-is-1.0.2.tgz#b5fd54220aa2bc5ab57aab7140c940754503c1a7"
@@ -2520,6 +2530,11 @@ csso@^4.0.2:
   integrity sha512-wvlcdIbf6pwKEk7vHj8/Bkc0B4ylXZruLvOgs9doS5eOsOpuodOV2zJChSpkp+pRpYQLQMeF04nr3Z68Sta9jA==
   dependencies:
     css-tree "^1.1.2"
+
+custom-event-polyfill@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/custom-event-polyfill/-/custom-event-polyfill-1.0.7.tgz#9bc993ddda937c1a30ccd335614c6c58c4f87aee"
+  integrity sha512-TDDkd5DkaZxZFM8p+1I3yAlvM3rSr1wbrOliG4yJiwinMZN8z/iGL7BTlDkrJcYTmgUSb4ywVCc3ZaUtOtC76w==
 
 de-indent@^1.0.2:
   version "1.0.2"
@@ -3119,7 +3134,7 @@ etag@~1.8.1:
   resolved "https://registry.yarnpkg.com/etag/-/etag-1.8.1.tgz#41ae2eeb65efa62268aebfea83ac7d79299b0887"
   integrity sha1-Qa4u62XvpiJorr/qg6x9eSmbCIc=
 
-eventemitter3@^4.0.0:
+eventemitter3@^4.0.0, eventemitter3@^4.0.3:
   version "4.0.7"
   resolved "https://registry.yarnpkg.com/eventemitter3/-/eventemitter3-4.0.7.tgz#2de9b68f6528d5644ef5c59526a1b4a07306169f"
   integrity sha512-8guHBZCwKnFhYdHr2ysuRWErTwhoN2X8XELRlrRwpmfeY2jjuUN4taQMsULKUVo1K4DvZl+0pgfyoysHxvmvEw==
@@ -3656,6 +3671,14 @@ hex-color-regex@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/hex-color-regex/-/hex-color-regex-1.1.0.tgz#4c06fccb4602fe2602b3c93df82d7e7dbf1a8a8e"
   integrity sha512-l9sfDFsuqtOqKDsQdqrMRk0U85RZc0RtOR9yPI7mRVOa4FsR/BVnZ0shmQRM96Ji99kYZP/7hn1cedc1+ApsTQ==
+
+hls.js@^0.14.17:
+  version "0.14.17"
+  resolved "https://registry.yarnpkg.com/hls.js/-/hls.js-0.14.17.tgz#0127cff2ec2f994a54eb955fe669ef6153a8e317"
+  integrity sha512-25A7+m6qqp6UVkuzUQ//VVh2EEOPYlOBg32ypr34bcPO7liBMOkKFvbjbCBfiPAOTA/7BSx1Dujft3Th57WyFg==
+  dependencies:
+    eventemitter3 "^4.0.3"
+    url-toolkit "^2.1.6"
 
 hmac-drbg@^1.0.1:
   version "1.0.1"
@@ -4477,6 +4500,11 @@ loader-utils@^2.0.0:
     emojis-list "^3.0.0"
     json5 "^2.1.2"
 
+loadjs@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/loadjs/-/loadjs-4.2.0.tgz#2a0336376397a6a43edf98c9ec3229ddd5abb6f6"
+  integrity sha512-AgQGZisAlTPbTEzrHPb6q+NYBMD+DP9uvGSIjSUM5uG+0jG15cb8axWpxuOIqrmQjn6scaaH8JwloiP27b2KXA==
+
 locate-path@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/locate-path/-/locate-path-5.0.0.tgz#1afba396afd676a6d42504d0a67a3a7eb9f62aa0"
@@ -5285,6 +5313,17 @@ pkg-dir@^4.1.0, pkg-dir@^4.2.0:
   dependencies:
     find-up "^4.0.0"
 
+plyr@^3.6.4:
+  version "3.6.4"
+  resolved "https://registry.yarnpkg.com/plyr/-/plyr-3.6.4.tgz#cc77d49d831b4b0130be075872290cd5e3be5366"
+  integrity sha512-l0EKsRxhwGtzpPJhs+okusogXRiJaagNaGYlj+iiyqyNzjh0ef5bhxNLsKhpsGvvZMnfV/KbOvIva+qeNCA9ng==
+  dependencies:
+    core-js "^3.8.1"
+    custom-event-polyfill "^1.0.7"
+    loadjs "^4.2.0"
+    rangetouch "^2.0.1"
+    url-polyfill "^1.1.12"
+
 portfinder@^1.0.28:
   version "1.0.28"
   resolved "https://registry.yarnpkg.com/portfinder/-/portfinder-1.0.28.tgz#67c4622852bd5374dd1dd900f779f53462fac778"
@@ -5825,6 +5864,11 @@ range-parser@^1.2.1, range-parser@~1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/range-parser/-/range-parser-1.2.1.tgz#3cf37023d199e1c24d1a55b84800c2f3e6468031"
   integrity sha512-Hrgsx+orqoygnmhFbKaHE6c296J+HTAQXoxEF6gNupROmmGJRoyzfG3ccAveqCBrwr/2yxQ5BVd/GTl5agOwSg==
+
+rangetouch@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/rangetouch/-/rangetouch-2.0.1.tgz#c01105110fd3afca2adcb1a580692837d883cb70"
+  integrity sha512-sln+pNSc8NGaHoLzwNBssFSf/rSYkqeBXzX1AtJlkJiUaVSJSbRAWJk+4omsXkN+EJalzkZhWQ3th1m0FpR5xA==
 
 raw-body@2.4.0:
   version "2.4.0"
@@ -6864,6 +6908,16 @@ url-parse@^1.4.3, url-parse@^1.4.7:
   dependencies:
     querystringify "^2.1.1"
     requires-port "^1.0.0"
+
+url-polyfill@^1.1.12:
+  version "1.1.12"
+  resolved "https://registry.yarnpkg.com/url-polyfill/-/url-polyfill-1.1.12.tgz#6cdaa17f6b022841b3aec0bf8dbd87ac0cd33331"
+  integrity sha512-mYFmBHCapZjtcNHW0MDq9967t+z4Dmg5CJ0KqysK3+ZbyoNOWQHksGCTWwDhxGXllkWlOc10Xfko6v4a3ucM6A==
+
+url-toolkit@^2.1.6:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/url-toolkit/-/url-toolkit-2.2.1.tgz#89009ed3d62a3574de079532a7266c14d2cc1c4f"
+  integrity sha512-8+DzgrtDZYZGhHaAop5WGVghMdCfOLGbhcArsJD0qDll71FXa7EeKxi2hilPIscn2nwMz4PRjML32Sz4JTN0Xw==
 
 url@^0.11.0:
   version "0.11.0"

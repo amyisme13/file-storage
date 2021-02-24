@@ -120,7 +120,9 @@ class File extends Model
             return null;
         }
 
-        return Storage::disk('s3')->temporaryUrl($this->path, now()->addHour());
+        // For now we don't need to use temporary url
+        return Storage::disk('s3')->url($this->path);
+        // return Storage::disk('s3')->temporaryUrl($this->path, now()->addHour());
     }
 
     /**
@@ -134,10 +136,11 @@ class File extends Model
             return null;
         }
 
-        return Storage::disk('s3')->temporaryUrl(
-            $this->video_path,
-            now()->addHour()
-        );
+        return Storage::disk('s3')->url($this->video_path);
+        // return Storage::disk('s3')->temporaryUrl(
+        //     $this->video_path,
+        //     now()->addHour()
+        // );
     }
 
     /**
@@ -151,10 +154,11 @@ class File extends Model
             return null;
         }
 
-        return Storage::disk('s3')->temporaryUrl(
-            $this->thumbnail,
-            now()->addHour()
-        );
+        return Storage::disk('s3')->url($this->thumbnail);
+        // return Storage::disk('s3')->temporaryUrl(
+        //     $this->thumbnail,
+        //     now()->addHour()
+        // );
     }
 
     /**

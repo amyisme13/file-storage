@@ -45,3 +45,7 @@ mix
   .vue()
   .ts('resources/js/app.ts', 'public/js')
   .postCss('resources/css/app.css', 'public/css', [require('tailwindcss')]);
+
+mix
+  .ts('resources/js/player.ts', 'public/js')
+  .css('resources/css/player.css', 'public/css');

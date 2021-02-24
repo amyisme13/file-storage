@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\File;
 use Illuminate\Support\Facades\Route;
 use Rennokki\LaravelSnsEvents\Http\Controllers\SnsController;
 
@@ -22,6 +23,10 @@ Auth::routes([
 ]);
 
 Route::post('/sns-endpoint', [SnsController::class, 'handle']);
+
+Route::get('/player/{file}', function (File $file) {
+    return view('player', compact('file'));
+});
 
 Route::fallback(function () {
     return view('app');
