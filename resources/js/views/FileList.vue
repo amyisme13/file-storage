@@ -1,8 +1,8 @@
 <template>
   <AppLayout>
     <div class="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
-      <div class="grid grid-cols-1 gap-6 p-4 bg-white border-b sm:grid-cols-6">
-        <div class="relative sm:col-span-2">
+      <div class="grid grid-cols-1 gap-2 p-4 bg-white border-b sm:grid-cols-12">
+        <div class="relative sm:col-span-4">
           <input
             v-model="search"
             type="text"
@@ -26,9 +26,16 @@
           </svg>
         </div>
 
+        <button
+          @click="loadFiles"
+          class="py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-md sm:col-span-2 lg:col-span-1"
+        >
+          Refresh
+        </button>
+
         <router-link
           :to="{ name: 'FileUploader' }"
-          class="py-2 text-sm font-medium text-center text-white bg-indigo-600 border-0 rounded-md sm:col-start-6"
+          class="py-2 text-sm font-medium text-center text-white bg-indigo-600 border-0 rounded-md sm:col-start-9 sm:col-span-4 md:col-start-11 md:col-span-2"
         >
           Upload Files
         </router-link>
@@ -56,12 +63,18 @@
               Status
             </th>
             <th scope="col" class="relative px-6 py-3">
-              <span class="sr-only">Delete</span>
+              <span class="sr-only">Actions</span>
             </th>
           </tr>
         </thead>
 
-        <tbody class="bg-white divide-y divide-gray-200">
+        <tbody v-if="loading">
+          <tr class="h-36 bg-gradient-to-br from-gray-600 to-gray-400">
+            <td colspan="4"></td>
+          </tr>
+        </tbody>
+
+        <tbody v-else class="bg-white divide-y divide-gray-200">
           <tr v-for="file in files" :key="file.slug">
             <td class="px-6 py-4 whitespace-nowrap">
               <div class="flex items-center">
@@ -177,6 +190,8 @@ import config from '@/utils/config';
   components: { AppLayout, Pagination },
 })
 export default class FileList extends Vue {
+  loading = false;
+
   created() {
     this.loadFiles();
   }
@@ -198,11 +213,15 @@ export default class FileList extends Vue {
   }
 
   async loadFiles() {
+    this.loading = true;
+
     const { data } = await index({ page: this.page, search: this.search });
 
     this.files = data.data;
     this.maxPage = data.meta.last_page;
     this.meta = data.meta;
+
+    this.loading = false;
   }
 
   async deleteFile(file: File) {
