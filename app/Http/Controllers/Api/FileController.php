@@ -7,6 +7,7 @@ use App\Http\Requests\File\StoreFile;
 use App\Http\Resources\File as FileResource;
 use App\Http\Resources\FileCollection;
 use App\Jobs\ProcessVideoFile;
+use App\Jobs\ProcessZipFile;
 use App\Models\File;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -89,6 +90,8 @@ class FileController extends Controller
             // TODO: dispatch make thumbnail job
         } elseif (Str::is('video/*', $file->type)) {
             ProcessVideoFile::dispatch($file);
+        } elseif (Str::is('application/x-zip-compressed', $file->type)) {
+            ProcessZipFile::dispatch($file);
         } else {
             $file->processed_at = now();
         }
