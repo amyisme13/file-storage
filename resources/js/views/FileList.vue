@@ -144,14 +144,25 @@
             <td
               class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap"
             >
-              <a
-                v-if="file.type.includes('video/')"
-                :href="`${playerUrl}/${file.slug}`"
-                target="_blank"
-                class="text-indigo-500 hover:text-indigo-700"
-              >
-                Play
-              </a>
+              <template v-if="file.processed_at">
+                <a
+                  v-if="file.type.includes('video/')"
+                  :href="`${playerUrl}/${file.slug}`"
+                  target="_blank"
+                  class="text-indigo-500 hover:text-indigo-700"
+                >
+                  Play
+                </a>
+
+                <a
+                  v-if="file.type.includes('application/x-zip-compressed')"
+                  :href="`${alefUrl}${file.scorm_url}`"
+                  target="_blank"
+                  class="text-indigo-500 hover:text-indigo-700"
+                >
+                  Play
+                </a>
+              </template>
 
               <button
                 @click="deleteFile(file)"
@@ -210,6 +221,10 @@ export default class FileList extends Vue {
 
   get playerUrl() {
     return `${config.appUrl}/player`;
+  }
+
+  get alefUrl() {
+    return `${config.alefUrl}?url=`;
   }
 
   async loadFiles() {

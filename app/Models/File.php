@@ -41,7 +41,7 @@ class File extends Model
      *
      * @var array
      */
-    protected $appends = ['url', 'video_url', 'thumbnail_url'];
+    protected $appends = ['url', 'video_url', 'thumbnail_url', 'scorm_url'];
 
     /**
      * Get the route key for the model.
@@ -157,6 +157,25 @@ class File extends Model
         return Storage::disk('s3')->url($this->thumbnail);
         // return Storage::disk('s3')->temporaryUrl(
         //     $this->thumbnail,
+        //     now()->addHour()
+        // );
+    }
+
+    /**
+     * Get the scorm url from slug
+     *
+     * @return string|null
+     */
+    public function getScormUrlAttribute()
+    {
+        if ($this->type !== 'application/x-zip-compressed') {
+            return null;
+        }
+
+        $unzippedPath = "unzipped/{$this->slug}/index.html";
+        return Storage::disk('s3')->url($unzippedPath);
+        // return Storage::disk('s3')->temporaryUrl(
+        //     $unzippedPath,
         //     now()->addHour()
         // );
     }

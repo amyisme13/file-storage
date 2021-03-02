@@ -59,6 +59,7 @@ export interface File {
   url?: string;
   video_url?: string;
   thumbnail_url?: string;
+  scorm_url?: string;
 
   created_at: string;
   uploaded_at: string;
