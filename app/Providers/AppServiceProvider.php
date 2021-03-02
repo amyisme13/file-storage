@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Filesystem\Plugins\ZipExtractTo;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -25,5 +27,11 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         JsonResource::withoutWrapping();
+
+        Storage::extend('s3', function ($app, $config) {
+            return Storage::createS3Driver($config)->addPlugin(
+                new ZipExtractTo()
+            );
+        });
     }
 }
