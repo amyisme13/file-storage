@@ -224,7 +224,7 @@ export default class FileList extends Vue {
   }
 
   toScormUrl(file: File) {
-    return `${config.alefUrl}/?url=${config.alefUrl}/content/unzipped/${file.slug}/index.html`;
+    return `${config.alefUrl}/?url=${config.alefUrl}/public/unzipped/${file.slug}/index.html`;
   }
 
   async loadFiles() {
