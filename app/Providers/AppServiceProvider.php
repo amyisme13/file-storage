@@ -33,5 +33,11 @@ class AppServiceProvider extends ServiceProvider
                 new ZipExtractTo()
             );
         });
+
+        Storage::extend('local', function ($app, $config) {
+            return Storage::createLocalDriver($config)->addPlugin(
+                new ZipExtractTo()
+            );
+        });
     }
 }

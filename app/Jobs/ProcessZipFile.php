@@ -64,8 +64,8 @@ class ProcessZipFile implements ShouldQueue, ShouldBeUnique
             throw new \Exception('Unable to download file');
         }
 
-        // Then unzip and store it to s3
-        $unzipped = Storage::disk('s3')->extractTo(
+        // Then unzip and store it to public
+        $unzipped = Storage::disk('public')->extractTo(
             "unzipped/{$this->file->slug}",
             Storage::path($this->file->path)
         );

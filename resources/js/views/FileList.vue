@@ -156,7 +156,7 @@
 
                 <a
                   v-if="file.type.includes('application/x-zip-compressed')"
-                  :href="`${alefUrl}${file.scorm_url}`"
+                  :href="toScormUrl(file)"
                   target="_blank"
                   class="text-indigo-500 hover:text-indigo-700"
                 >
@@ -223,8 +223,8 @@ export default class FileList extends Vue {
     return `${config.appUrl}/player`;
   }
 
-  get alefUrl() {
-    return `${config.alefUrl}?url=`;
+  toScormUrl(file: File) {
+    return `${config.alefUrl}/?url=${config.alefUrl}/content/unzipped/${file.slug}/index.html`;
   }
 
   async loadFiles() {

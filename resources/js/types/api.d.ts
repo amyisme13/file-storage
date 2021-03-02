@@ -56,10 +56,10 @@ export interface File {
   size: number;
   slug: string;
 
+  path: string;
   url?: string;
   video_url?: string;
   thumbnail_url?: string;
-  scorm_url?: string;
 
   created_at: string;
   uploaded_at: string;
