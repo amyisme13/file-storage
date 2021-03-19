@@ -69,7 +69,7 @@
         </thead>
 
         <tbody v-if="loading">
-          <tr class="h-36 bg-gradient-to-br from-gray-600 to-gray-400">
+          <tr class="bg-gray-500 h-36 animate-pulse">
             <td colspan="4"></td>
           </tr>
         </tbody>
